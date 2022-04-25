@@ -88,6 +88,8 @@ return packer.startup(function(use)
 
   use "lewis6991/gitsigns.nvim"
 
+  use "saecki/crates.nvim"
+
   -- Markdown
   use {
     "lukas-reineke/headlines.nvim",
