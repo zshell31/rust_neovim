@@ -59,12 +59,7 @@ return packer.startup(function(use)
 
   use "neovim/nvim-lspconfig"
   use "williamboman/nvim-lsp-installer"
-  --use "simrat39/rust-tools.nvim"
-  use {
-    "matze/rust-tools.nvim",
-    branch = "fix-175-migrate-to-lsp-hints",
-    commit = "36a28b52cd701ae459222eefeb3bc6ed2e260d0f"
-  }
+  use "simrat39/rust-tools.nvim"
 
   use "folke/trouble.nvim"
 
