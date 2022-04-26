@@ -69,7 +69,6 @@ return packer.startup(function(use)
 
   use "nvim-telescope/telescope.nvim"
   -- use "nvim-telescope/telescope-ui-select.nvim"
-  use "TC72/telescope-tele-tabby.nvim"
 
   use "nvim-lualine/lualine.nvim"
   use "arkav/lualine-lsp-progress"
@@ -90,6 +89,8 @@ return packer.startup(function(use)
   use "lewis6991/gitsigns.nvim"
 
   use "saecki/crates.nvim"
+
+  use "Shatur/neovim-session-manager"
 
   -- Markdown
   use {

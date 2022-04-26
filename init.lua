@@ -14,6 +14,7 @@ require "user.comment"
 require "user.nvim-tree"
 require "user.alpha"
 require "user.gitsigns"
+require "user.session_manager"
 
 -- TODO: lazy loading
 require "user.crates"

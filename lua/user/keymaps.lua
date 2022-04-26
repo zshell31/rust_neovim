@@ -22,19 +22,7 @@ keymap("n", "<leader>d", ":TroubleToggle<CR>", opts)
 keymap("n", "<leader>f", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>g", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>s", ":Telescope grep_string<CR>", opts)
-
-keymap("n", "<leader>t", "lua show_tabs()<CR>", opts)
-function show_tabs()
-  local tele_tabby_opts = require "telescope.themes".get_dropdown {
-    winblend = 10,
-    border = true,
-    previewer = false,
-    shorten_path = false,
-    height = 30,
-    width = 120,
-  }
-  require "telescope".extensions.tele_tabby.list(tele_tabby_opts)
-end
+keymap("n", "<leader>t", ":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false, height = 20, width = 120}))<CR>", opts)
 
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "<C-s>", "<ESC>:w<CR>i", opts)
