@@ -13,15 +13,28 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<C-s>", ":w<CR>", opts)
 
-keymap("n", "<S-K>", ":bnext<CR>", opts)
-keymap("n", "<S-J>", ":bprevious<CR>", opts)
+keymap("n", "<S-L>", ":bnext<CR>", opts)
+keymap("n", "<S-H>", ":bprevious<CR>", opts)
 keymap("n", "<C-q>", ":bd<CR>", opts)
 keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
 
-keymap("n", "<leader>t", ":TroubleToggle<CR>", opts)
+keymap("n", "<leader>d", ":TroubleToggle<CR>", opts)
 keymap("n", "<leader>f", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>g", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>s", ":Telescope grep_string<CR>", opts)
+
+keymap("n", "<leader>t", "lua show_tabs()<CR>", opts)
+function show_tabs()
+  local tele_tabby_opts = require "telescope.themes".get_dropdown {
+    winblend = 10,
+    border = true,
+    previewer = false,
+    shorten_path = false,
+    height = 30,
+    width = 120,
+  }
+  require "telescope".extensions.tele_tabby.list(tele_tabby_opts)
+end
 
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "<C-s>", "<ESC>:w<CR>i", opts)

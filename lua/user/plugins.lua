@@ -68,7 +68,8 @@ return packer.startup(function(use)
   use "moll/vim-bbye"
 
   use "nvim-telescope/telescope.nvim"
-  use "nvim-telescope/telescope-ui-select.nvim"
+  -- use "nvim-telescope/telescope-ui-select.nvim"
+  use "TC72/telescope-tele-tabby.nvim"
 
   use "nvim-lualine/lualine.nvim"
   use "arkav/lualine-lsp-progress"

@@ -3,8 +3,6 @@ if not status_ok then
   return
 end
 
-telescope.load_extension("ui-select")
-
 local actions = require "telescope.actions"
 
 telescope.setup {
@@ -84,8 +82,18 @@ telescope.setup {
     -- builtin picker
   },
   extensions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_cursor {}
+    ["tele_tabby"] = {
+      use_highlighter = true,
     }
   }
 }
+
+-- local opts = themes.get_dropdown {
+--   winblend = 10,
+--   border = true,
+--   previewer = false,
+--   shorten_path = false,
+--   heigth=20,
+--   width= 120
+-- }
+-- require'telescope'.extensions.tele_tabby.list(opts)

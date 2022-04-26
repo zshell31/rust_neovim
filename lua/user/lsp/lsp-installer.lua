@@ -7,7 +7,8 @@ end
 local servers = {
   "sumneko_lua",
   "rust_analyzer",
-  "pyright"
+  "pyright",
+  "clangd"
 }
 
 for _, name in pairs(servers) do
