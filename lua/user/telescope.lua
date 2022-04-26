@@ -5,6 +5,8 @@ end
 
 local actions = require "telescope.actions"
 
+telescope.load_extension("fzf")
+
 telescope.setup {
   defaults = {
 
@@ -82,15 +84,11 @@ telescope.setup {
     -- builtin picker
   },
   extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
   }
 }
-
--- local opts = themes.get_dropdown {
---   winblend = 10,
---   border = true,
---   previewer = false,
---   shorten_path = false,
---   heigth=20,
---   width= 120
--- }
--- require'telescope'.extensions.tele_tabby.list(opts)

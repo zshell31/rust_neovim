@@ -68,6 +68,7 @@ return packer.startup(function(use)
   use "moll/vim-bbye"
 
   use "nvim-telescope/telescope.nvim"
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use "stevearc/dressing.nvim"
 
   use "nvim-lualine/lualine.nvim"
