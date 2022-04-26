@@ -91,7 +91,7 @@ return packer.startup(function(use)
 
   use "saecki/crates.nvim"
 
-  use "Shatur/neovim-session-manager"
+  use "rmagatti/auto-session"
 
   -- Markdown
   use {
