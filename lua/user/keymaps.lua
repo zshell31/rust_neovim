@@ -25,6 +25,8 @@ keymap("n", "<leader>s", ":Telescope grep_string<CR>", opts)
 keymap("n", "<leader>t", ":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false, height = 20, width = 120}))<CR>", opts)
 keymap("n", "<leader>b", ":Telescope yabs tasks<CR>", opts)
 
+keymap("n", "<leader>q", ":lua require('rest-nvim').run()<CR>", opts)
+
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "<C-s>", "<ESC>:w<CR>i", opts)
 

@@ -5,6 +5,9 @@ if not status_ok then
 end
 
 dressing.setup {
+  input = {
+    relative = "editor"
+  },
   select = {
     enabled = true,
     backend = { "telescope" },

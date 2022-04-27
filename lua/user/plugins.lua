@@ -65,8 +65,8 @@ return packer.startup(function(use)
 
   use "kyazdani42/nvim-tree.lua"
   use "goolord/alpha-nvim"
-  use "moll/vim-bbye"
-  -- use "famiu/bufdelete.nvim"
+  -- use "moll/vim-bbye"
+  use "famiu/bufdelete.nvim"
 
   use "nvim-telescope/telescope.nvim"
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -109,6 +109,14 @@ return packer.startup(function(use)
         return
       end
       headlines.setup()
+    end
+  }
+
+  -- Rest
+  use {
+    "NTBBloodbath/rest.nvim",
+    config = function ()
+      require("rest-nvim").setup {}
     end
   }
 

@@ -4,12 +4,29 @@ if not status_ok then
   return
 end
 
+-- local function get_diagnostics()
+--   local diagnostics = vim.diagnostic.get()
+--   local count = { 0, 0, 0, 0 }
+--   for _, diagnostic in ipairs(diagnostics) do
+--     count[diagnostic.severity] = count[diagnostic.severity] + 1
+--   end
+-- end
+
 lualine.setup {
   options = {
     theme = "auto",
     globalstatus = true
   },
   sections = {
+    lualine_b = {
+      "branch",
+      "diff",
+      {
+        "diagnostics",
+        sources = { "nvim_diagnostic" },
+        always_visible = true,
+      },
+    },
     lualine_c = { "lsp_progress" }
   }
 }
