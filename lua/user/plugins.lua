@@ -92,6 +92,11 @@ return packer.startup(function(use)
   use "saecki/crates.nvim"
 
   use "rmagatti/auto-session"
+  -- use "pianocomposer321/yabs.nvim"
+  use {
+    "zshell31/yabs.nvim",
+    branch = "fixes"
+  }
 
   -- Markdown
   use {

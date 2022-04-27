@@ -15,7 +15,7 @@ keymap("n", "<C-s>", ":w<CR>", opts)
 
 keymap("n", "<S-L>", ":bnext<CR>", opts)
 keymap("n", "<S-H>", ":bprevious<CR>", opts)
-keymap("n", "<C-q>", ":bd<CR>", opts)
+keymap("n", "<C-q>", ":bd!<CR>", opts)
 keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
 
 keymap("n", "<leader>d", ":TroubleToggle<CR>", opts)
@@ -23,6 +23,7 @@ keymap("n", "<leader>f", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>g", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>s", ":Telescope grep_string<CR>", opts)
 keymap("n", "<leader>t", ":lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown({ previewer = false, height = 20, width = 120}))<CR>", opts)
+keymap("n", "<leader>b", ":Telescope yabs tasks<CR>", opts)
 
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "<C-s>", "<ESC>:w<CR>i", opts)
