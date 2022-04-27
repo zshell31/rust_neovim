@@ -15,7 +15,7 @@ keymap("n", "<C-s>", ":w<CR>", opts)
 
 keymap("n", "<S-L>", ":bnext<CR>", opts)
 keymap("n", "<S-H>", ":bprevious<CR>", opts)
-keymap("n", "<C-q>", ":bd!<CR>", opts)
+keymap("n", "<C-q>", ":Bdelete!<CR>", opts)
 keymap("n", "<C-b>", ":NvimTreeToggle<CR>", opts)
 
 keymap("n", "<leader>d", ":TroubleToggle<CR>", opts)

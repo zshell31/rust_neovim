@@ -66,6 +66,7 @@ return packer.startup(function(use)
   use "kyazdani42/nvim-tree.lua"
   use "goolord/alpha-nvim"
   use "moll/vim-bbye"
+  -- use "famiu/bufdelete.nvim"
 
   use "nvim-telescope/telescope.nvim"
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
