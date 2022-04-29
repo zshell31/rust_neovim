@@ -27,6 +27,18 @@ lualine.setup {
         always_visible = true,
       },
     },
-    lualine_c = { "lsp_progress" }
+    lualine_c = { 
+      {
+        "lsp_progress",
+        fmt = function (str)
+          if str:len() > 100 then
+            return str:sub(1, 100) .. ".."
+          else
+            return str
+          end
+        end,
+        spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
+      },
+    }
   }
 }

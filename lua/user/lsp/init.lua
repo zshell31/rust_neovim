@@ -5,4 +5,6 @@ if not status_ok then
 end
 
 require("user.lsp.lsp-installer")
+require("user.lsp.lspconfig")
 require("user.lsp.handlers").setup()
+

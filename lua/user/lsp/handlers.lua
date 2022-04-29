@@ -45,15 +45,27 @@ end
 
 local function lsp_highlight_document(client)
   if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec(
+    vim.cmd(
       [[
         augroup lsp_document_highlight
           autocmd! * <buffer>
           autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
           autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
         augroup END
-      ]],
-      false
+      ]]
+    )
+  end
+end
+
+local function lsp_format_document(client)
+  if client.resolved_capabilities.document_formatting then
+    vim.cmd(
+      [[
+        augroup lsp_format_document
+          autocmd! * <buffer>
+          autocmd BufWritePre <buffer> silent! lua vim.lsp.buf.formatting_sync()
+        augroup end
+      ]]
     )
   end
 end
@@ -73,15 +85,16 @@ local function lsp_keymaps(bufnr)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
 
-M.make_on_attach = function(only_keymaps)
-  if only_keymaps then
-    return function(_, bufnr)
-      lsp_keymaps(bufnr)
-    end
-  else
-    return function(client, bufnr)
-      lsp_keymaps(bufnr)
+M.make_on_attach = function(use_highlight, use_formatting)
+  return function(client, bufnr)
+    lsp_keymaps(bufnr)
+
+    if use_highlight then
       lsp_highlight_document(client)
+    end
+
+    if use_formatting then
+      lsp_format_document(client)
     end
   end
 end

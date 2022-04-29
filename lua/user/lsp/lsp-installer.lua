@@ -33,7 +33,7 @@ lsp_installer.on_server_ready(function(server)
     end
 
     local opts = {
-      on_attach = handlers.make_on_attach(true),
+      on_attach = handlers.make_on_attach(false, false),
       capabilities = capabilities
     }
 
@@ -74,7 +74,7 @@ lsp_installer.on_server_ready(function(server)
 
   else
     local opts = {
-      on_attach = handlers.make_on_attach(false),
+      on_attach = handlers.make_on_attach(true),
       capabilities = capabilities,
     }
 
