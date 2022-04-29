@@ -60,8 +60,8 @@ lsp_installer.on_server_ready(function(server)
           vim.cmd([[
             augroup RustToolsOnInitialized
               autocmd CursorHold                          *.rs silent! lua vim.lsp.buf.document_highlight()
-              autocmd CursorMoved, InsertEnter            *.rs silent! lua vim.lsp.buf.clear_references()
-              autocmd BufEnter, CursorHold, InsertLeave   *.rs silent! lua vim.lsp.codelens.refresh()
+              autocmd CursorMoved,InsertEnter            *.rs silent! lua vim.lsp.buf.clear_references()
+              autocmd BufEnter,CursorHold,InsertLeave   *.rs silent! lua vim.lsp.codelens.refresh()
               autocmd BufWritePre                         *.rs silent! lua vim.lsp.buf.formatting_sync()
             augroup end
           ]])
