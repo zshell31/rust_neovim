@@ -27,7 +27,6 @@ keymap("n", "<leader>6", ":BufferLineGoToBuffer 6<CR>", opts)
 keymap("n", "<leader>7", ":BufferLineGoToBuffer 7<CR>", opts)
 keymap("n", "<leader>8", ":BufferLineGoToBuffer 8<CR>", opts)
 keymap("n", "<leader>9", ":BufferLineGoToBuffer 9<CR>", opts)
-
 keymap("n", "<C-g>", ":BufferLinePick<CR>", opts)
 
 keymap("n", "<leader>d", ":TroubleToggle<CR>", opts)

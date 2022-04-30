@@ -99,6 +99,8 @@ return packer.startup(function(use)
     branch = "fixes"
   }
 
+  use "akinsho/toggleterm.nvim"
+
   -- Markdown
   use {
     "lukas-reineke/headlines.nvim",

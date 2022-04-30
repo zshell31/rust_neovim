@@ -16,6 +16,7 @@ require "user.alpha"
 require "user.gitsigns"
 require "user.session"
 require "user.dressing"
+require "user.toggleterm"
 
 -- TODO: lazy loading
 require "user.crates"
