@@ -10,9 +10,12 @@ M.setup = function()
   local settings = require("user.lsp.settings")
 
   local exclude = {}
+  local to_install = {}
   for server, conf in pairs(settings) do
     if not conf.install then
       table.insert(exclude, server)
+    else
+      table.insert(to_install, server)
     end
   end
 
