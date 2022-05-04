@@ -14,7 +14,7 @@ return {
   setup = function(lspconfig, handlers, capabilities)
     local opts = {
       on_attach = handlers.make_on_attach(true, true),
-      capabilities = handlers.capabilities
+      capabilities = capabilities
     }
 
     opts = vim.tbl_deep_extend("force", hls_opts, opts)

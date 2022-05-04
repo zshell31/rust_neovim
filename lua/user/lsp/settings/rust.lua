@@ -30,7 +30,7 @@ local tools = {
 
 return {
   install = true,
-  setup = function(lspconfig, handlers, capabilities)
+  setup = function(_, handlers, capabilities)
     -- Initialize the LSP via rust-tools instead
     local rust_status_ok, rust_tools = pcall(require, "rust-tools")
     if not rust_status_ok then

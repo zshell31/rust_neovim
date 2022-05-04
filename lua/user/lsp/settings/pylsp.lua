@@ -1,9 +1,6 @@
-local pyright_opts = {
+local pylsp_opts = {
 	settings = {
-		pyright = {
-      analysis = {
-        typeCheckingMode = "on"
-      }
+		pylsp = {
 		},
 	},
 }
@@ -16,7 +13,7 @@ return {
       capabilities = capabilities,
     }
 
-    opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+    opts = vim.tbl_deep_extend("force", pylsp_opts, opts)
 
     lspconfig.setup(opts)
   end

@@ -30,7 +30,7 @@ M.setup = function()
         server_pending = "➜",
         server_uninstalled = "✗",
       }
-    }
+    },
   }
 
   require("user.lsp.lspconfig").setup()
