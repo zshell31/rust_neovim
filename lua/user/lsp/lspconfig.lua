@@ -4,16 +4,60 @@ if not status_ok then
   return
 end
 
+local M = {}
+
+local settings = require("user.lsp.settings")
 local handlers = require("user.lsp.handlers")
+local capabilities = handlers.capabilities
 
-local opts = {
-  on_attach = handlers.make_on_attach(true, true),
-  capabilities = handlers.capabilities
-}
+M.setup = function()
+  -- Setup lsp servers
+  for server, conf in pairs(settings) do
+    conf.setup(lspconfig[server], handlers, capabilities)
+  end
 
--- Install hls/ormolu using ghcup
--- hls works fine for ghc 9.0.2
--- for 9.2.2 see https://github.com/haskell/haskell-language-server/issues/2179
-local hls_opts = require("user.lsp.settings.hls")
-lspconfig.hls.setup(vim.tbl_deep_extend("force", hls_opts, opts))
+  -- Setup diagnostics
+  local signs = {
+    -- Taken from trouble
+    { name = "DiagnosticSignError", text = "" },
+    { name = "DiagnosticSignWarn", text = "" },
+    { name = "DiagnosticSignHint", text = "" },
+    { name = "DiagnosticSignInfo", text = "" },
+  }
 
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
+  end
+
+  local config = {
+    virtual_text = true,
+    signs = {
+      active = signs,
+    },
+    update_in_insert = true,
+    underline = true,
+    severity_sort = true,
+    float = {
+      focusable = false,
+      style = "minimal",
+      border = "rounded",
+      source = "always",
+      header = "",
+      prefix = "",
+    },
+  }
+
+  vim.diagnostic.config(config)
+
+  -- Setup lsp handlers
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    focusable = false,
+    border = "rounded",
+  })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+    focusable = false,
+    border = "rounded",
+  })
+end
+
+return M
