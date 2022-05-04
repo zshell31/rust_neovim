@@ -57,8 +57,15 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets"
 
-  use "neovim/nvim-lspconfig"
-  use "williamboman/nvim-lsp-installer"
+  use {
+    "williamboman/nvim-lsp-installer",
+    {
+      "neovim/nvim-lspconfig",
+      config = function()
+        require("user.lsp").setup()
+      end
+    }
+  }
   use "simrat39/rust-tools.nvim"
 
   use "folke/trouble.nvim"
@@ -69,7 +76,7 @@ return packer.startup(function(use)
   use "famiu/bufdelete.nvim"
 
   use "nvim-telescope/telescope.nvim"
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  -- use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use "stevearc/dressing.nvim"
 
   use "nvim-lualine/lualine.nvim"

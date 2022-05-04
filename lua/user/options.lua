@@ -43,8 +43,9 @@ vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]]
 
 vim.cmd [[
-  augroup lua_ident_confg
+  augroup custom_ident_configs
     autocmd!
     autocmd FileType lua setlocal shiftwidth=2 tabstop=2
+    autocmd FileType nix setlocal shiftwidth=2 tabstop=2
   augroup end
 ]]
