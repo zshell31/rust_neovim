@@ -2,7 +2,7 @@
 local project_dir = vim.fn.expand("%:p:h:t")
 local project_dir_len = (vim.fn.expand("%:p:h") .. "/"):len()
 local docker_cwd = string.format("/workspace/%s", project_dir)
-local docker_prefix = string.format("docker exec -it --user 1000:1000 concurrency-course /bin/bash --rcfile %s/docker/config/bashrc -ci", docker_cwd)
+local docker_prefix = string.format("docker exec -it --user $UID:$GID concurrency-course /bin/bash --rcfile %s/docker/config/bashrc -ci", docker_cwd)
 
 local yabs = require("yabs")
 
