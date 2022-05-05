@@ -31,14 +31,20 @@ lualine.setup {
       {
         "lsp_progress",
         fmt = function (str)
-          if str:len() > 100 then
-            return str:sub(1, 100) .. ".."
+          if str:len() > 80 then
+            return str:sub(1, 80) .. ".."
           else
             return str
           end
         end,
         spinner_symbols = { '🌑 ', '🌒 ', '🌓 ', '🌔 ', '🌕 ', '🌖 ', '🌗 ', '🌘 ' },
       },
+      {
+        "filename",
+        file_status = false,
+        path = 1,
+        shorting_target = 40,
+      }
     }
   }
 }
