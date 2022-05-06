@@ -33,6 +33,7 @@ M.setup = function()
     },
   }
 
+  vim.lsp.set_log_level("debug")
   require("user.lsp.lspconfig").setup()
 end
 
