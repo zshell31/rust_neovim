@@ -90,7 +90,11 @@ return packer.startup(function(use)
   use "RRethy/nvim-treesitter-endwise"
   use "p00f/nvim-ts-rainbow"
   use "nvim-treesitter/playground"
-  use "windwp/nvim-autopairs"
+  -- use "windwp/nvim-autopairs"
+  use {
+    "zshell31/nvim-autopairs",
+    branch = "fix/get_end_pair_length"
+  }
 
   use "numToStr/Comment.nvim"
   use "JoosepAlviste/nvim-ts-context-commentstring"

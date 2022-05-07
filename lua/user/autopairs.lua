@@ -5,6 +5,7 @@ if not status_ok then
 end
 
 local Rule = require('nvim-autopairs.rule')
+local cond = require("nvim-autopairs.conds")
 
 npairs.setup {
   check_ts = true,
@@ -26,7 +27,48 @@ npairs.setup {
   },
 }
 
-npairs.add_rule(Rule("<", ">", "-vim"))
+npairs.add_rule(
+  Rule("<", ">")
+    :with_pair(cond.not_before_text("<"))
+)
+
+npairs.add_rule(
+  Rule("", ">")
+    :use_key(">")
+    :with_pair(cond.none())
+    :with_move(function(opts) return opts.char == ">" end)
+)
+
+npairs.add_rule(
+  Rule("<", "<del>")
+    :with_pair(cond.after_text(">"))
+)
+
+npairs.add_rules {
+  Rule(' ', ' ')
+    :with_pair(function (opts)
+      local pair = opts.line:sub(opts.col - 1, opts.col)
+      return vim.tbl_contains({ '()', '[]', '{}' }, pair)
+    end),
+  Rule('( ', ' )')
+      :with_pair(function() return false end)
+      :with_move(function(opts)
+          return opts.prev_char:match('.%)') ~= nil
+      end)
+      :use_key(')'),
+  Rule('{ ', ' }')
+      :with_pair(function() return false end)
+      :with_move(function(opts)
+          return opts.prev_char:match('.%}') ~= nil
+      end)
+      :use_key('}'),
+  Rule('[ ', ' ]')
+      :with_pair(function() return false end)
+      :with_move(function(opts)
+          return opts.prev_char:match('.%]') ~= nil
+      end)
+      :use_key(']')
+}
 
 local cmp_autopairs = require "nvim-autopairs.completion.cmp"
 local cmp_status_ok, cmp = pcall(require, "cmp")
