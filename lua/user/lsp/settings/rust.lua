@@ -8,6 +8,8 @@ local rust_opts = {
   }
 }
 
+local Path = require("plenary.path")
+
 local tools = {
   autoSetHints = true,
   hover_with_actions = true,
@@ -44,7 +46,13 @@ return {
       capabilities = capabilities
     }
 
-    opts = vim.tbl_deep_extend("force", rust_opts, opts)
+    opts = vim.tbl_deep_extend("force", opts, rust_opts)
+
+    local settings = Path:new("rust_settings.json")
+    if settings:exists() then
+      local local_opts = vim.json.decode(settings:read())
+      opts.settings = local_opts
+    end
 
     rust_tools.setup {
       -- The "server" property provided in rust-tools setup function are the
