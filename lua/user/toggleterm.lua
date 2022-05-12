@@ -54,3 +54,9 @@ function _G.htop_toggle()
 	htop:toggle()
 end
 vim.cmd [[command! HTop lua htop_toggle()]]
+
+local nix_repl = Terminal:new({ cmd = "nix repl", hidden = true })
+function _G.nix_repl_toggle()
+	nix_repl:toggle()
+end
+vim.cmd [[command! NixRepl lua nix_repl_toggle()]]
