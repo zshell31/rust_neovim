@@ -1,4 +1,34 @@
+local lspconfig_utils = require("lspconfig.util")
+local Path = require("plenary.path")
+
+local current_dir = nil
+
+local function get_cwd_root()
+  local cwd = vim.fn.getcwd()
+  local cargo_crate_dir = lspconfig_utils.root_pattern("Cargo.toml")(cwd)
+  return cargo_crate_dir
+    or lspconfig_utils.find_git_ancestor(cwd)
+end
+
+local function get_root_dir(filename)
+  if current_dir == nil then
+    current_dir = get_cwd_root()
+  end
+  local fname = filename or vim.api.nvim_buf_get_name(0)
+  if current_dir ~= nil then
+    if fname:find(current_dir) == nil then
+      return
+    end
+  end
+  local cargo_crate_dir = lspconfig_utils.root_pattern("Cargo.toml")(fname)
+  return cargo_crate_dir
+    or lspconfig_utils.root_pattern("rust-project.json")(fname)
+    or lspconfig_utils.find_git_ancestor(fname)
+end
+
 local rust_opts = {
+  standalone = false,
+  root_dir = get_root_dir,
   settings = {
 		["rust-analyzer"] = {
       checkOnSave = {
@@ -7,8 +37,6 @@ local rust_opts = {
 		},
   }
 }
-
-local Path = require("plenary.path")
 
 local tools = {
   autoSetHints = true,
