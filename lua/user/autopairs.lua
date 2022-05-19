@@ -41,7 +41,15 @@ npairs.add_rule(
 
 npairs.add_rule(
   Rule("<", "<del>")
-    :with_pair(cond.after_text(">"))
+    :with_pair(function(opts)
+      local prev_char = nil
+      if opts.col > 1 then
+        local pos = opts.col - 1
+        prev_char = opts.line:sub(pos, pos)
+      end
+      print(prev_char)
+      return prev_char ~= nil and prev_char == "<" and opts.next_char == ">"
+    end)
 )
 
 npairs.add_rules {
