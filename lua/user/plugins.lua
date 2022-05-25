@@ -95,6 +95,10 @@ return packer.startup(function(use)
     "zshell31/nvim-autopairs",
     branch = "fix/get_end_pair_length"
   }
+  use {
+    'nmac427/guess-indent.nvim',
+    config = function() require('guess-indent').setup {} end,
+  }
 
   use "numToStr/Comment.nvim"
   use "JoosepAlviste/nvim-ts-context-commentstring"

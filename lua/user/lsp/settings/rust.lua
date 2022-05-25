@@ -21,13 +21,34 @@ local function get_root_dir(filename)
     end
   end
   local cargo_crate_dir = lspconfig_utils.root_pattern("Cargo.toml")(fname)
-  return cargo_crate_dir
+  local cmd = { "cargo", "metadata", "--no-deps", "--format-version", "1" }
+  if cargo_crate_dir ~= nil then
+    cmd[#cmd + 1] = "--manifest-path"
+    cmd[#cmd + 1] = lspconfig_utils.path.join(cargo_crate_dir, "Cargo.toml")
+  end
+  local cargo_metadata = ""
+  local cm = vim.fn.jobstart(cmd, {
+    on_stdout = function(_, d, _)
+      cargo_metadata = table.concat(d, "\n")
+    end,
+    stdout_buffered = true,
+  })
+  if cm > 0 then
+    cm = vim.fn.jobwait({ cm })[1]
+  else
+    cm = -1
+  end
+  local cargo_workspace_dir = nil
+  if cm == 0 then
+    cargo_workspace_dir = vim.fn.json_decode(cargo_metadata)["workspace_root"]
+  end
+  return cargo_workspace_dir
+    or cargo_crate_dir
     or lspconfig_utils.root_pattern("rust-project.json")(fname)
     or lspconfig_utils.find_git_ancestor(fname)
 end
 
 local rust_opts = {
-  standalone = false,
   root_dir = get_root_dir,
   settings = {
 		["rust-analyzer"] = {

@@ -47,7 +47,6 @@ npairs.add_rule(
         local pos = opts.col - 1
         prev_char = opts.line:sub(pos, pos)
       end
-      print(prev_char)
       return prev_char ~= nil and prev_char == "<" and opts.next_char == ">"
     end)
 )
