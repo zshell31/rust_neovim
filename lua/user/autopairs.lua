@@ -51,6 +51,11 @@ npairs.add_rule(
     end)
 )
 
+npairs.add_rule(
+  Rule("<=", "<del>")
+    :with_pair(cond.after_text(">"))
+)
+
 npairs.add_rules {
   Rule(' ', ' ')
     :with_pair(function (opts)
