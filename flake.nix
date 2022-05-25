@@ -9,7 +9,6 @@
       devShell.${system} =
         pkgs.mkShell { nativeBuildInputs = with pkgs; [ 
           pkg-config
-          cmake
         ]; 
       };
    };
