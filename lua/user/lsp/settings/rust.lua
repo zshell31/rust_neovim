@@ -62,6 +62,9 @@ local rust_opts = {
 local tools = {
   autoSetHints = true,
   hover_with_actions = true,
+  hover_actions = {
+    auto_focus = true,
+  },
   inlay_hints = {
     only_current_line = false,
     show_parameter_hints = true,
@@ -80,6 +83,11 @@ local tools = {
   end
 }
 
+local function rust_tools_keymaps(bufnr)
+  local opts = { noremap = true, silent = true }
+  vim.api.nvim_buf_set_keymap(bufnr, "n", "gh", '<cmd>lua require("rust-tools.hover_actions").hover_actions()<CR>', opts)
+end
+
 return {
   install = true,
   setup = function(_, handlers, capabilities)
@@ -90,8 +98,12 @@ return {
       return
     end
 
+    local on_attach = handlers.make_on_attach(false, false)
     local opts = {
-      on_attach = handlers.make_on_attach(false, false),
+      on_attach = function (client, bufnr)
+        rust_tools_keymaps(bufnr)
+        on_attach(client, bufnr)
+      end,
       capabilities = capabilities
     }
 
